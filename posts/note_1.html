@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>note 1 </title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ TeX: { extensions: ["autobold.js"] }});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+<h2>Introduction</h2>
+<h3> Generalization </h3>
+- The ability to categorize correctly new examples that differ from those
+        used for training is known as generalization.
+<h3> Preprocessing </h3>
+- For most practical applications, the original input variables are typically
+preprocessed to transform into some new space of variables, where, it is hoped,
+the pattern recognition problem will be easier to solve. Also called <i> feature 
+extracting</i>.<br/>
+- <i> e.g.</i> the input image may be translated and scaled so that they will 
+be of the same size.<br/>
+- <i> e.g.</i> dimension reduction
+<h3> Supervised Learning </h3>
+- <i>Classification:</i> assign each input vector to one of a finite number of discrete
+categories <br/>
+- <i>Regression:</i> different from classification, the output consists one or more continuous
+variables. <br/>
+<h3> Unsupervised Learning</h3>
+- <i> Clustering:</i> discover groups of similar examples within the data.<br/>
+- <i> Density estimation:</i> determine the distribution of data within the input space.
+<h3> Reinforcement Learning </h3>
+- Find suitable actions to take in a given situation in order to maximize a reward. <br/>
+- Current action not only affects the immediate reward but also has an impact on the reward
+of all subsequent steps.
+
+<h2> Polynomial Curve Fitting </h2>
+Polynomial curve fitting is the regression problem. Suppose we observe a real-valued target
+variable $x$, and we want to use this observation to predict the value of the target variable
+$t$.</br>
+Now suppose we are given a training set containing $N$ observations of $x$, that is
+$${\bf x} = (x_1,x_2,...,x_N)$$
+together with the corresponding target values
+$${\bf t} = (t_1,t_2,...,t_N)$$
+Our goal it to exploit the value of $t^*$ for some new value $x^*$. This will involve trying 
+to discover the underlying function such as $t = sin(2\pi x)$. However, this is a difficult problem
+as we have to generalize from a finite dataset. Furthermore, since the dataset is corrupted, we 
+have to find a way to describe the uncertainty. <br/>
+Now, we just consider a simple approach based on curve-fitting. That is, we shall fit the data using
+a polynomial function of the form
+$$
+    y(x,\mathbf w) = \sum _{j = 0} ^ {M} (w_j * x^j) 
+$$
+where $M$ is the order of polynomial. The values of $\mathbf w$ can be determined by
+minimizing an <i> error function </i> that measures the misfits between the function 
+$y(x,\mathbf w)$ and the training set data points. One simple choice of error function is:
+$$
+E(w) = \frac{1}{2} \sum _{n=1} ^{N} (y(x_m,\mathbf w) - t_n)^2 
+$$
+We can solve the problem by choosing the value of $w$ for which $E(w)$ is as small as possible.
+Since the error function is a quadratic function of $\mathbf w$, its derivatives with 
+respect to $\mathbf w$ will be linear, and so the minimization will have a unique solution, denoted
+by $w^*$.
+There remains the problem determining the order $M$ of the polynomial. Too small $M$ and too large
+$M$ both gives us a poor representation of the target function, called <i>under-fitting</i>
+and <i> overfitting </i>. To solve this problem, we will use separate datasets to evaluate
+the performance of different $M$. Sometimes it is more convenient to use the <i> 
+root-mean-square (RMS) </i> error defined by $E_{RMS} = \sqrt{2*E(\mathbf w ^*) /N}$,
+which allows us to compare different sizes of data sets on an equal footing. 
+
+For over-fitting, there is an interesting fact:
+<blockquote>
+For a given model complexity, the over-fitting problem becomes less severe as 
+the size of the data set increases. One rough heuristic that is sometimes advocated
+is that the number of data points should be no less than some multiple (say 5 or 10)
+of the number of adaptive parameters in the model. 
+</blockquote>
+
+<h3>Regularization</h3>
+To control the over-fitting phenomenon, we applied a method called <i> regularization
+</i>, which involves <i> adding a penalty term to the error function </i> in order
+to discourage the coefficients from reaching large values. The simplest form of penalty
+is:
+$$
+    {\tilde E}(\mathbf w) = \frac{1}{2} \sum _{n=1} ^{N} (y(x_n,\mathbf w) - t_n)^2 +
+    \frac{\lambda}{2} ||\mathbf w ||^2
+$$
+Techniques such as this are known as <i> shrinkage </i> because this reduces the value 
+of coefficients.
+
+
+</body>
+</html>
+
