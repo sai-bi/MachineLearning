@@ -95,15 +95,29 @@ E({\sigma ^2}') &= \frac{N-1}{N} \sigma ^2
 \end{align}
 $$
 這其中的道理也很簡單，根據期望的性質，我們有：
-$$
-E(\mu ') = \frac{1}{N} \sum_{i=1}^{N} 
-E(x \_i) = \mu
-$$
-對於方差，稍微麻煩了一點。
+$
+E(\mu ') = \frac{1}{N} \sum_{i=1}^{N}E(x \_i) = \mu
+$
 
-To be continued...
+對於方差，稍微麻煩了一點。首先我們計算$E(x_i ^2)$, 計算一個變量的n次方的期望可以通過它的分佈的
+[Moment Generating Function](http://en.wikipedia.org/wiki/Moment-generating_function)得到。
+由此我們可以知道$E(x_i ^2) = \mu ^2 + \sigma ^2$。另外，因為$x_m, x_n(m \not= n)$
+是互相獨立的，根據期望的性質$E(x_m x_n) = E(x_m)E(x_n) = \mu ^2$。有了上面的結論，我們可以
+得到
+$$E({\sigma ^2}') = \frac{1}{N}\sum \_{i=1}^{N}(E(x \_i ^2)-  2 E(x \_i \mu') + E(\mu' ^2))$$            
+
+$$E(x \_i ^2) = \mu ^2 + \sigma ^2,$$
+$$            E(x \_i u') = \frac{1}{N}(N\mu ^2 + \sigma ^2) $$
+$$ E(\mu' ^2) = \frac{1}{N^2}(N(\mu ^2 + \sigma ^2)  + N(N-1)\mu ^2) $$
+由此我們可以得到$E({\sigma ^2}') = \frac{N-1}{N} \sigma ^2$。
+因此，為了消除這樣一個bias，我們可以這麼計算:
+$
+\tilde{\sigma} ^2 =  \frac{N}{N-1} {\sigma ^2}' 
+$
+。從這裡我們可以看到，隨著數據點的增多，maximum likelihood的偏差將會越來越小。但是對於數據點較少的情況，maximum likelihood帶來的問題是很嚴重的。
+
+
   
-`
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
 </script>
