@@ -10,6 +10,8 @@ $$p(X,Y) = p(Y|X)p(X)$$
 貝葉斯定理
 $$p(Y|X) = \frac{p(X|Y)p(Y)}{p(X)}$$
 
+<!-- more -->
+
 ###先驗概率，后驗概率
 $p$的先驗概率(prior),是在觀測到一些證據之前或者說這些證據被納入考慮之前$p$的概率分佈。而其后驗概率(posterior probability)則是在考慮其相關證據或數據后得到的概率分佈。
 
@@ -26,7 +28,7 @@ $$ E(f) = \int p(x)f(x)dx $$
 $$E(f) \approx \frac{1}{N} \sum_{n=1}^{N} f(x_n)$$
 這一性質在我們討論**抽樣方法**(sampling method)的時候將會經常用到。同樣我們也會經常用到條件期望(conditional expectation):
 
-$$ E_x[f|y] = \sum_{x}p(x|y) f(x)$$ 
+$$ E\_x[f|y] = \sum_{x}p(x|y) f(x)$$ 
 
 $f(x)$ 的方差被定義為
 $$ var[f] = E[(f(x)-E(f(x))^2] 
